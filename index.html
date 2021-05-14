@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Shape Type, the letter shaping game</title>
+  <meta name="description" content="A typography game">
+  <meta name="author" content="Mark MacKay">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta property="og:image" content="http://shape.method.ac/ogimage.png"/>
+  <link rel="stylesheet" href="css/shapes.css">
+  <script type="text/javascript" charset="utf-8" src="js/letters.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/libs.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/shapes.js"></script>
+</head>
+
+<body>
+  <div class="sorry">
+    <div class="contain">
+      <h1>Sorry, your browser doesn't support Shape Type</h1>
+      <p>I'm really sorry; I've put a lot of effort into making this game run on as many platforms as possible. Unfortunately, I am unable to cover all scenarios. The game works on <a href="http://www.google.com/chrome">Google Chrome</a>, <a href="http://www.getfirefox.com">Firefox</a>, <a href="http://www.apple.com/safari/">Safari</a>,  <a href="http://www.opera/browser/">Opera</a> and <a href="http://www.beautyoftheweb.com/">Internet Explorer 9</a>. If you try one of those and still have problems, let me know.</p>
+
+      <p>Thanks for your interest in Shape Type!<br />
+      Mark MacKay — <a href="mailto:hello@method.ac">hello@method.ac</a></p>
+
+    </div>
+  </div>
+  <header>
+    <h1>Shape Type <span id="screen">a letter shaping game</span></h1>
+      <div class="donate">  
+        <a href="https://method.ac/donate/">Buy me a coffee</a>
+      </div>
+  </header>
+  <div id="container">
+    <div id="remaining"><div id="slides">10</div>remaining</div>
+    <article>
+        <div id="actions">
+          <div id="results">
+            <div class="score">
+              <div class="similarity">Similarity</div>
+              <div id="number">99</div><div id="percent">%</div>
+            </div>
+          
+            <div id="select">
+              <div class="option"><a href="#" class="selected" id="showboth">Both letters</a></div>
+              <div class="option"><a href="#" id="showexpert">Original letter</a></div>
+              <div class="option"><a href="#" id="showyour">Your letter</a></div>
+            </div>
+              <a id="next">Next</a>
+          </div>
+
+        </div>
+        <div id="canvas"></div>
+        <div id="instructions">Drag to get started</div>
+        <div class="string" data-destroy="8,2">
+          <h1>s</h1>
+        </div>
+        <div class="string" data-destroy="15,2|24,1" data-pull="180">
+          <h1>q</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/itc-lubalin-graph/" target="_blank">Lubalin Graph</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Herb_Lubalin" target="_blank">Herb Lubalin</a></td></tr>
+               <tr><th>Released</th><td>1974</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="10,1,2|12,1,2" data-pull="100">
+          <h1>b</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/trajan/" target="_blank">Trajan</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Carol_Twombly" target="_blank">Carol Twombly</a></td></tr>
+               <tr><th>Released</th><td>1989</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="23,2|5,2|18,2|34,1"  data-pull="120">
+          <h1>e</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/itc-edwardian-script/" target="_blank">ITC Edwardian Script</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Ed_Benguiat" target="_blank">Ed Benguiat</a></td></tr>
+               <tr><th>Released</th><td>1994</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="2,1|8,2|10,1" data-pull="50">
+          <h1>a</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://www.fontshop.com/fontlist/super_families/ff_dax/" target="_blank">FF Dax</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Hans_Reichel" target="_blank">Hans Reichel</a></td></tr>
+               <tr><th>Released</th><td>1997</td></tr>
+             </table>
+            <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="5,1,2|12,1,2" data-pull="100">
+          <h1>s2</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/fontbureau/interstate/" target="_blank">Interstate</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Tobias_Frere-Jones" target="_blank">Tobias Frere-Jones</a></td></tr>
+               <tr><th>Released</th><td>1996</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="10,1,2|8,1,2|12,1,2" data-pull="100">
+          <h1>and2</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/itc-lubalin-graph/" target="_blank">Lubalin Graph</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Herb_Lubalin" target="_blank">Herb Lubalin</a></td></tr>
+               <tr><th>Released</th><td>1974</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="8,2|1,2" data-pull="130">
+          <h1>gminus</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://www.fontshop.com/fonts/downloads/fontfont/ff_zine_complete_suite/" target="_blank">FF Zine Slab Italic</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://www.fontshop.com/fonts/designer/ole_schafer/" target="_blank">Ole Schäfer</a></td></tr>
+               <tr><th>Released</th><td>1997</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="2,1,2|7,1,2|15,1,2|12,1,2" data-pull="80">
+          <h1>e3</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://www.linotype.com/54897/LinotypeSyntax-family.html" target="_blank">Syntax</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://de.wikipedia.org/wiki/Hans_Eduard_Meier" target="_blank">Hans Eduard Meier</a></td></tr>
+               <tr><th>Released</th><td>1969</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="32,1,2|4,1,2|16,1,2|10,1,2" data-pull="100">
+          <h1>g</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://www.fontshop.com/fonts/downloads/fontfont/ff_zine_complete_suite/" target="_blank">FF Zine Slab Italic</a></td></tr>
+               <tr><th>Designer</th><td><a href="http://www.fontshop.com/fonts/designer/ole_schafer/" target="_blank">Ole Schäfer</a></td></tr>
+               <tr><th>Released</th><td>1997</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+        <div class="string" data-destroy="38,1,2|29,1,2|1,1,2|24,1,2" data-pull="100">
+          <h1>and</h1>
+          <div class="explain">
+             <table>
+               <tr><th>Typeface</th><td><a href="http://www.theleagueofmoveabletype.com/fonts/16-linden-hill" target="_blank">Linden Hill Italic</a> (open font)</td></tr>
+               <tr><th>Designer</th><td><a href="http://code.google.com/p/sortsmill/" target="_blank">Barry Schwartz</a></td></tr>
+               <tr><th>Released</th><td>2010</td></tr>
+             </table>
+             <a class="compare">Compare</a>
+           </div>
+        </div>
+
+    </article>
+  </div> 
+
+        <div class="ipad"></div>
+        </div id="social">
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="credits">
+    <div class="left">
+      <div class="keys">Hold <span>Shift</span> to snap to the axis, <span>Alt</span> for a quick preview</div>
+    </div>
+    <div class="ipad" id="ipad">
+    </div>
+    <div class="social" id="social">
+      More design games are coming up, follow us to get notified<br />
+          <div class="follow"><a href="https://twitter.com/methodofaction" class="twitter-follow-button" data-button="grey" data-text-color="#FFFFFF" data-align="right" data-link-color="#FFcc99">Follow @methodofaction</a></div>
+    </div>
+  </div>
+
+  <div id="overlay">
+    <div id="finalscore">
+      <div class="title">Your score</div>
+      <div id="finaltotalscore">0</div>
+      <div class="outof">out of 100</div>
+      <a id="twitter" href="http://twitter.com/share?">Tweet your score</a>
+      <div class="tryagain"><a href="/?again">or try again</a></div>
+      <div class="plug">Shape Type is part of <a href="http://method.ac">Method of Action</a>, an online course to help programmers learn design.</div>
+    </div>
+  </div>
+</body>
+</html>
