@@ -1,7 +1,8 @@
 (function() {
+  
   var deselect, destroyFunction, disableKeyboard, trackKey;
   disableKeyboard = false;
-  window.onload = function() {
+  
     var activeColor, circle, currentScreen, debug, end, explode, fillColor, goto, implode, inactiveColor, launch, move, moveY, paintBezier, paper, ring, solution, start, totalScreens, transition;
     currentScreen = 0;
     $("#canvas").data("screen", 0).data("draggables", 0);
@@ -13,10 +14,6 @@
     solution = [];
     totalScreens = 10;
     window.finalScore = 0;
-    $('#canvas').css({
-      "margin-top": $("#canvas").height() / 2 * -1,
-      "margin-left": $("#canvas").width() / 2 * -1
-    });
     goto = function() {
       return transition(currentScreen);
     };
@@ -35,7 +32,7 @@
       }
     };
     launch = function(currentScreen) {
-      var canvasHeight, canvasWidth, character, destroyArray, elementHeight, elementWidth, i, node, obliterate, offset, problem, solutionArray, translate, _i, _len, _len2, _ref;
+      var canvasHeight, canvasWidth, character, destroyArray, elementHeight, elementWidth, i, node, obliterate, problem, solutionArray, translate, _i, _len, _len2, _ref;
       $("body").attr("data-screen", currentScreen);
       if (currentScreen > 0) {
         $("#results").hide();
@@ -60,13 +57,12 @@
         "stroke": "transparent"
       });
       problem.node.id = "problem" + currentScreen;
-      canvasHeight = paper.height;
-      canvasWidth = paper.width;
       elementHeight = solution.getBBox().height;
       elementWidth = solution.getBBox().width;
-      offset = parseInt($(".string").eq(currentScreen).data("pull") || 0);
-      translate = [canvasHeight / 2 - elementHeight / 2 - 20, canvasWidth / 2 - elementWidth / 2 - offset];
-      solution.translate(translate[1], translate[0]);
+      paper.setSize(elementWidth, elementHeight);
+      canvasHeight = paper.height;
+      canvasWidth = paper.width;
+
       destroyArray = destroyFunction(currentScreen);
       for (_i = 0, _len = destroyArray.length; _i < _len; _i++) {
         obliterate = destroyArray[_i];
@@ -89,13 +85,12 @@
       problem.attr({
         path: solutionArray
       });
-      problem.translate(translate[1], translate[0]);
       if (currentScreen === 0) {
         paper.circle(solution.attr("path")[node + 1][1], solution.attr("path")[node + 1][2], 10).attr({
           "stroke-dasharray": ". ",
           "stroke": inactiveColor
         });
-        paper.path("        M         " + (problem.attr("path")[node + 1][1]) + "         " + (problem.attr("path")[node + 1][2]) + "         L         " + (solution.attr("path")[node + 1][1]) + "         " + (solution.attr("path")[node + 1][2] - 10) + "              ").attr({
+        paper.path("M" + (problem.attr("path")[node + 1][1]) + " " + (problem.attr("path")[node + 1][2]) + " L" + (solution.attr("path")[node + 1][1]) + " " + (solution.attr("path")[node + 1][2] - 10) + " ").attr({
           "stroke-dasharray": ". ",
           "stroke": inactiveColor
         });
@@ -135,7 +130,7 @@
       this.element = $("#problem" + this.currentScreen)[0].raphael;
       return this.path = $("#problem" + this.currentScreen)[0].raphael.attr("path");
     };
-    move = function(dx, dy) {
+    move = function(dx, dy, e) {
       var nodeNumber, x, y;
       x = this.ox + dx;
       y = this.oy + dy;
@@ -174,7 +169,7 @@
         "path": this.path
       });
     };
-    moveY = function(dx, dy) {
+    moveY = function(dx, dy, ax, ay, e) {
       var path, x, y;
       x = this.ox + dx;
       y = this.oy + dy;
@@ -219,6 +214,7 @@
         paper.text(Math.floor(node[points[0]] - 10), Math.floor(node[points[1]]), i).toFront();
       }
       square = paper.rect(Math.floor(node[points[0]]) - 1.5, Math.floor(node[points[1]]) - 1.5, 4, 4).attr(fills);
+      if (square.attrs.x === 0 && square.attrs.y === 0) square.remove();
       if (node.length > 3) {
         paper.circle(node[1], node[2], 2).toBack().attr(fills);
         paper.circle(node[3], node[4], 2).toBack().attr(fills);
@@ -579,13 +575,13 @@
       opts = 'status=1' + ',width=' + width + ',height=' + height + ',top=' + top + ',left=' + left;
       return window.open("http://twitter.com/share?" + string + "&url=" + url, 'twitter', opts);
     });
-    return launch(currentScreen);
-  };
-  $(document).bind("touchmove touchstart", function(evt) {
+  
+  window.addEventListener("touchstart", function(evt) {
     if (evt.target.tagName.toLowerCase() !== "path" && evt.target.tagName.toLowerCase() !== "a") {
+
       return evt.preventDefault();
     }
-  });
+  },{passive: false});
   window.onclick = function(evt) {
     deselect(evt);
     return true;
@@ -651,4 +647,5 @@
       }
     }
   };
+  launch(currentScreen);
 }).call(this);

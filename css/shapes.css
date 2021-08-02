@@ -137,7 +137,7 @@ img {
   vertical-align: middle; }
 
 svg:not(:root) {
-  overflow: hidden; }
+  overflow: visible !important; }
 
 figure {
   margin: 0; }
@@ -222,7 +222,7 @@ td {
   *zoom: 1; }
 
 body {
-  background: #472f1c;
+  background: var(--accent1);
   font: 18px/150% "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
   color: white; }
 
@@ -262,25 +262,29 @@ table a:hover {
 
 header {
   position: relative;
-  width: 700px;
+  max-width: 700px;
   margin: 0 auto;
-  z-index: 10; 
+  z-index: 10;
+  display: flex;
 }
 
 header .donate {
-  position: absolute;
-  right: 0;
-  top: 0;
+  margin-top: 16px;
 }
 
 header .donate a {
-  background-color: #ffcc66;
+  background-color: var(--accent3);
   text-decoration: none;
-  color: #472f1c;
+  color: var(--accent15);
   display: inline-block;
   padding: 0 12px;
   border-radius: 6px;
   font-size: 15px;
+  white-space: nowrap;
+}
+
+header .donate a:hover {
+  background-color: var(--accent10);
 }
 
   
@@ -288,25 +292,27 @@ header h1 {
   font: 18px/150% sans-serif;
   font-family: "Gill Sans", "Calibri", sans-serif;
   text-transform: uppercase;
-  text-align: left;
-  margin: 10px auto;
-  width: 750px;
-  -webkit-font-smoothing: antialiased; 
+  -webkit-font-smoothing: antialiased;
+  flex-grow:  1;
 }
 
 header h1 span {
-  color: #ffcc66;
+  color: var(--accent10);
   text-transform: none;
   padding-left: 0.5em; 
 }
 
-#canvas {
-  width: 100%;
+article {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   height: 100%;
-  position: absolute;
-  z-index: 0;
-  top: 50%;
-  left: 50%; }
+}
+
+#canvas {
+
+}
 
 #canvas.deselected svg * {
   display: none; }
@@ -480,40 +486,19 @@ body[data-screen="0"] #remaining #slides {
 
 .credits {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  margin-left: -375px;
-  width: 750px;
-  height: 90px;
-  font: 11px/160% "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
-  color: #cccccc;
-  opacity: 0.9;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font: 13px/160% "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+  color: var(--accent14);
+  opacity: 1;
   z-index: 1; }
-  .credits .left {
-    position: absolute;
-    bottom: 15px;
-    line-height: 160%;
-    color: rgba(255, 255, 255, 0.7); }
   .credits a {
     color: #ffcc66;
     text-decoration: none; }
     .credits a:hover {
       text-decoration: underline; }
-  .credits .social {
-    display: none;
-    width: 350px;
-    text-align: right;
-    position: absolute;
-    right: 0;
-    bottom: 11px; }
-  .credits .ipad {
-    background: transparent url(data:image/png;base64,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) top right no-repeat;
-    width: 250px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 45px;
-    opacity: 0.7; }
 
 #actions {
   position: absolute;
@@ -784,8 +769,8 @@ footer {
   display: none; }
 
 .keys span {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 2px 5px;
+  background-color: var(--accent0);
+  padding: 4px 6px;
   border-radius: 3px;
   text-transform: uppercase;
   color: white;
@@ -948,3 +933,17 @@ body {
   color: #cccccc; }
   .no-svg .sorry a {
     color: #00ccff; }
+
+@media only screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align:  center;
+  }
+
+  h1 {
+    margin: 0 auto;
+  }
+  #instructions {
+    display: none;
+  }
+}
