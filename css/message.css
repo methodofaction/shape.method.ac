@@ -1,0 +1,42 @@
+.message {
+  display: flex;
+  position: absolute;
+  background: var(--z2);
+  font-family: var(--sans-serif);
+  top: 15%;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 100ms ease;
+  line-height: 50px;
+}
+
+.message.hidden {
+  opacity: 0;
+  display: flex;
+  transition: opacity var(--transition-duration) ease;
+}
+
+.message-icon {
+  margin-right: 8px;
+  position: relative;
+  top: -2px;
+}
+
+.message svg {
+  vertical-align: middle;
+}
+
+.message svg path {
+  fill: var(--z15);
+}
+
+@media (max-width: 760px) and (orientation:landscape) {
+  .message {
+    top: 0;
+    left: 100px;
+    right: 100px;
+    line-height: 50px;
+  }
+}

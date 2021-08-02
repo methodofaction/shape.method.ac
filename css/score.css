@@ -1,0 +1,186 @@
+
+.score span {
+  color: var(--z7); 
+}
+
+.score div {
+  display: none;
+}
+
+.score span#score {
+  font-size: 40px;
+  display: inline-block;
+  color: var(--z15);
+  padding-bottom: 25px;
+  margin-bottom: -7px;
+  text-align: right; 
+  position: relative;
+}
+
+.score span#score:after {
+  content: '/';
+  color: var(--z6);
+  display: inline-block;
+  position: relative;
+  left: 4px;
+}
+
+.score span.title {
+  font-size: 18px;
+  display: block;
+  text-align: center;
+  margin-bottom: 5px; 
+}
+
+.score span.total {
+  font-size: 40px;
+  display: inline-block; 
+}
+
+
+#overlay {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  transition: transform 500ms ease, opacity 500ms ease;
+  transform: scale(1.5, 1.5);
+  z-index: 10;
+  background-color: rgba(35,34,42,0.8);
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#finalscore {
+  padding: 20px;
+  color: var(--z9);
+  font-size: 18px;
+  background: var(--z4);
+  display: flex;
+  flex-direction: column;
+}
+
+#finalscore .col {
+  position: relative;
+}
+
+#finalscore .title {
+  text-align: center;
+}
+
+#finalscore #finaltotalscore {
+  font-size: 150px;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+
+#finalscore .outof {
+  font-size: 30px;
+  text-align: center;
+  padding: 10px 0;
+  border-top: solid var(--z9) 3px;
+  margin-bottom: 10px;
+  margin-top: 140px;
+}
+
+
+#finalscore svg {
+  display: inline-block;
+  vertical-align: middle;
+  fill: var(--z14);
+}
+
+#finalscore a.button {
+  display: block;
+  border: solid var(--z3) 1px;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: var(--z15);
+  line-height: 48px;
+  text-decoration: none;
+  background-color: var(--z4);
+  padding: 0 24px;
+  height: 48px;
+}
+
+#finalscore a.button:hover {
+ background-color: var(--z5);
+ color: var(--z15);
+}
+
+#finalscore a#twitter {
+  text-align: left;
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+#finalscore .tryagain {
+  text-align: center; 
+}
+
+#finalscore .tryagain a {
+  color: var(--z12); 
+  font: 15px/48px var(--sans-serif);
+}
+
+
+#overlay.show, #popup.show {
+  transform: scale(1, 1);
+  opacity: 1; 
+}
+
+.plug {
+  font-size: 14px;
+  color: var(--z8);
+  font-family: var(--sans-serif);
+  letter-spacing: -0.3px;
+  max-width: 170px;
+  text-align: center;
+  align-self: center;
+  line-height: 160%;
+}
+
+.plug a {
+  color: var(--z9);
+}
+
+#popup.show {
+  top: 50%; 
+}
+
+#overlay.show {
+  top: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+}
+
+@media (max-width: 760px) and (orientation:landscape) {
+  #finalscore {
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #finalscore .plug {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    max-width: none;
+  }
+}

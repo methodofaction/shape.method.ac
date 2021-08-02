@@ -1,0 +1,24 @@
+.button {
+  font-size: 36px;
+  color: var(--z14);
+  background: var(--z3);
+  display: inline-block;
+  text-decoration: none;
+  line-height: 64px;
+  padding: 0 32px;
+  border-radius: 4px;
+  transition: all 300ms ease;
+  height: 64px;
+  align-self: flex-end;
+  text-align: center;
+}
+
+.button:hover {
+  transition: none;
+  color: var(--z15);
+  background: var(--z4);
+}
+
+.button:active {
+  background: var(--d5);
+}

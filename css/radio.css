@@ -1,0 +1,48 @@
+.radio {
+  font-family:  var(--sans-serif);
+}
+
+.radio a {
+  display: block;
+  width: 220px;
+  height: 30px;
+  white-space: nowrap;
+  line-height: 40px;
+  text-decoration: none;
+  color: var(--z7);
+  padding-left: 25px;
+  position: relative; 
+  margin-right: 16px;
+  text-align: left;
+  position: relative;
+  padding-left:  var(--x8);
+}
+
+.radio a:before,
+.radio a:after {
+  content:  '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  border-radius: var(--x4);
+  transition: all 200ms ease;
+  transform:  translate(0,-2px);
+}
+
+.radio a:before {
+  background-color: var(--z2);
+  box-shadow: inset 1px 1px 2px var(--z1), inset -1px -1px 1px var(--z4) ;
+  height: var(--x4);
+  width: var(--x4); 
+}
+
+.radio a.selected { color: var(--d8); }
+.radio a.selected:before { box-shadow: 0 0 var(--x1) var(--d7); background-color: var(--d7) }
+
+@media (max-width: 760px) and (orientation:portrait) { 
+  .radio {
+    display: flex;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+}

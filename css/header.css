@@ -1,0 +1,148 @@
+header {
+  position: absolute;
+  top: 0;
+  left: 15vw;
+  right: 0;
+}
+
+header h1 {
+  font: 100px/150% var(--serif);
+  margin: 10px 0;
+  display: flex;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased; 
+  white-space: nowrap;
+  color: var(--z12);
+  letter-spacing: 16px;
+  transform: scale(0.225);
+  transform-origin: 0 0;
+  height: 18px;
+}
+
+header h1 .E { transform: translate(2px, 0); }
+header h1 .R { transform: translate(-1px, 0); }
+header h1 .N { transform: translate(-1px, 0); }
+header h1 .T { transform: translate(0, 0); }
+header h1 .Y { transform: translate(3px, 0); }
+header h1 .P { transform: translate(4px, 0); }
+header h1 .e { transform: translate(-2px, 0); }
+
+header p {
+  font: 14px/150% var(--sans-serif);
+  color: var(--z5);
+  margin: 0;
+  padding: 0;
+}
+
+#donations {
+  position: absolute;
+  top: 16px;
+  left: 170px;
+}
+
+#donations a {
+  background: var(--z3);
+  text-decoration: none;
+  height: 40px;
+  display: block;
+  line-height: 40px;
+  border-radius: 8px;
+  padding: 0 16px;
+}
+
+#donations a:after {
+  content: '🙏';
+  position: absolute;
+  display: inline-block;
+  font-size: 32px;
+  right: -40px;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+#donations a:hover:after {
+  opacity: 1;
+}
+
+#back-to-home {
+  position: absolute;
+  transition: transform var(--transition-duration) ease;
+  left: 32px;
+  top: 12px;
+  background: var(--z2);
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  line-height: 52px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#back-to-home:hover {
+  transform: translate(5px, 0);
+}
+
+#back-to-home .home  {
+  font: 14px/48px var(--sans-serif);
+  color: var(--z2);
+  transition: color var(--transition-duration) ease;
+  position: absolute;
+  left: 90%;
+  top: 0;
+}
+
+#back-to-home .home {
+
+}
+
+#back-to-home:hover .home {
+  color: var(--z5);
+}
+
+
+
+#back-to-home .caret {
+  width: 10px;
+  height: 10px;
+  border: solid var(--z4) 3px;
+  border-right: none;
+  border-top: none;
+  position: absolute;
+  transform: rotate(45deg);
+  top: 18px;
+  left: -8px;
+  transition: transform var(--transition-duration) ease;
+}
+
+#back-to-home:hover .caret {
+  transform: translate(-5px, 0) rotate(45deg) ;
+}
+
+@media (max-width: 760px) {
+  header {
+    left: 90px;
+    right: 90px;
+    text-align: center;
+  }
+
+  header h1 {
+    justify-content: center;
+    transform-origin: top center;
+    transform: scale(0.20);
+  }
+
+  header p {
+    display: none;
+  }
+
+  #back-to-home {
+    top: 1px;
+  }
+
+  #donations {
+    position: static;
+    display: inline-block;
+    white-space: nowrap;
+    margin-top: 8px;
+  }
+}

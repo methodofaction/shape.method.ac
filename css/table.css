@@ -1,0 +1,81 @@
+.tabular {
+
+}
+
+.tabular table {
+  display: inline-table;
+  border-collapse: collapse;
+}
+
+.tabular table a, 
+.tabular table a:link, 
+.tabular table a:visited {
+  transition: all 150ms ease;
+  color: var(--z14);
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  padding: 0 2px; 
+  white-space: nowrap;
+  background: var(--z2);
+  line-height: 180%;
+}
+
+.tabular table a:before, 
+.tabular table a:link:before, 
+.tabular table a:visited:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: solid var(--z5) 2px; 
+}
+
+.tabular table a:hover:visited:before {
+  border-bottom-color: var(--d7);
+}
+
+.tabular table a:hover {
+  background-color: var(--z1);
+  color: var(--z15); 
+}
+
+.tabular table th,
+.tabular table td {
+  font-weight: normal;
+  color: var(--z7);
+  padding-right: 16px;
+  text-align: left;
+  line-height: 180%;
+}
+
+.tabular table th {
+  font-family: var(--sans-serif);
+}
+
+.tabular table td {
+  color: var(--z10);
+}
+
+@media (max-width: 760px) {
+  .tabular table th {
+    text-align: right;
+  }
+  .tabular {
+    left: 0;
+    right: 0;
+    bottom: 78px;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 760px) and (orientation:landscape) {
+  .tabular {
+    left: 8px;
+    bottom: 8px;
+    text-align: left;
+  }
+}

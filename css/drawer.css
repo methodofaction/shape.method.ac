@@ -1,0 +1,107 @@
+
+.drawer {
+  transition: all var(--transition-duration) ease;
+  transform: translate(0, -100%);
+  background-color: var(--z3);
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 13px;
+  font-family: var(--sans-serif);
+  z-index: 2; 
+  color: var(--z9);
+}
+
+.drawer.open {
+  transform: translate(0, 0);
+}
+
+  
+.drawer .tab {
+  position: absolute;
+  right: 15vw;
+  text-align: center;
+  bottom: -44px;
+  line-height: 44px;
+  height: 44px;
+  padding: 0 16px;
+  background: var(--z3);
+  cursor: pointer;
+  border-radius: 0 0 4px 4px; 
+  color: var(--z11);
+}
+
+.drawer .tab:hover {
+  background: var(--z4);
+}
+
+.drawer.open .tab:hover {
+  background: var(--z3);
+}
+
+.drawer .tab span {
+  border-bottom: solid var(--z11) 1px;
+}
+
+.drawer .wrapper .shortcuts {
+  display: flex;
+  padding: 16px 0;
+}
+
+.drawer .wrapper .shortcuts .col {
+  width: 33%; 
+}
+
+.drawer .wrapper .shortcuts .col:nth-child(2) {
+  padding-left: 20px;
+}
+
+.drawer .wrapper .shortcuts .col div {
+  white-space: nowrap; 
+}
+
+.drawer .wrapper .shortcuts .col div span.command {
+  width: 120px;
+  text-align: right;
+  display: inline-block;
+  white-space: nowrap; 
+}
+
+.drawer .wrapper .shortcuts .col div span.key {
+  text-transform: uppercase;
+  font-family: Arial, sans-serif;
+  display: inline-block;
+  background: var(--z5);
+  border-radius: 2px;
+  padding: 0 5px;
+  margin: 0 3px;
+  font-size: 12px;
+  letter-spacing: -0.5px;
+  line-height: 18px;
+  color: var(--z14);
+  font-weight: bold;
+  box-shadow: 1px 1px 1px var(--z3);
+}
+
+.drawer .wrapper .shortcuts .col div span.plus {
+  color: var(--z6); 
+}
+
+@media (max-width: 760px) {
+
+  #tab {
+    display: none;
+  }
+
+  .drawer .wrapper .shortcuts {
+    flex-direction: column;
+    align-items: center;
+  }
+  .drawer .wrapper .shortcuts .col {
+    width: 100%; 
+  }
+
+  .drawer .wrapper .shortcuts .col:nth-child(2) {
+    padding-left: 0;
+  }
+}

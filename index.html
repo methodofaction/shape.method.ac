@@ -3,200 +3,227 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
   <title>Shape Type</title>
-  <meta name="description" content="A letter shaping game">
-  <meta name="author" content="Mark MacKay">
+  <meta name="description" content="A game to learn how to kern type">
+  <meta name="author" content="Method of Action">
   <meta name="viewport" content="initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-  <meta property="og:image" content="https://shape.method.ac/ogimage.png"/>
-  <meta property="og:url" content="https://shape.method.ac" />
+  <meta property="og:image" content="https://type.method.ac/ogimage.png"/>
+  <meta property="og:url" content="https://type.method.ac" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Shape Type" />
-  <meta property="og:description" content="A game to learn how to complete letterform shapes" />
+  <meta property="og:title" content="Kern Type" />
+  <meta property="og:description" content="A game to learn how to kern type" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/shapes.css">
+  <link rel="stylesheet" href="css/drawer.css">
+  <link rel="stylesheet" href="css/radio.css">
+  <link rel="stylesheet" href="css/table.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/score.css">
+  <link rel="stylesheet" href="css/button.css">
+  <link rel="stylesheet" href="css/svg.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/stage.css">
+  <link rel="stylesheet" href="css/tutorial.css">
+  <link rel="stylesheet" href="css/message.css">
 </head>
 
 <body>
-  <div class="sorry">
-    <div class="contain">
-      <h1>Sorry, your browser doesn't support Shape Type</h1>
-      <p>I'm really sorry; I've put a lot of effort into making this game run on as many platforms as possible. Unfortunately, I am unable to cover all scenarios. The game works on <a href="http://www.google.com/chrome">Google Chrome</a>, <a href="http://www.getfirefox.com">Firefox</a>, <a href="http://www.apple.com/safari/">Safari</a>,  <a href="http://www.opera/browser/">Opera</a> and <a href="http://www.beautyoftheweb.com/">Internet Explorer 9</a>. If you try one of those and still have problems, let me know.</p>
-
-      <p>Thanks for your interest in Shape Type!<br />
-      Mark MacKay — <a href="mailto:hello@method.ac">hello@method.ac</a></p>
-
+  <a href="https://method.ac" id="back-to-home">
+    <div class="caret"></div>
+    <div class="logo">
+      <svg width="16" height="16" viewBox="0 0 11 11">
+          <path style="fill: var(--z10)" d="M11 0L0 11h11z"></path><path style="fill: var(--z13)" d="M0 0l11 11H0z"></path>
+      </svg>
     </div>
-  </div>
+    <div class="home">More games</div>
+  </a>
+      
   <header>
-    <h1>Shape Type <span id="screen">a letter shaping game</span></h1>
-      <div class="donate">  
-        <a href="https://method.ac/donate/">Buy me a coffee</a>
-      </div>
+    <h1>
+      <span>S</span>
+      <span>H</span>
+      <span>A</span>
+      <span>P</span>
+      <span>E</span>
+      <span>T</span>
+      <span>Y</span>
+      <span>P</span>
+      <span>E</span>
+    </h1>
+     <p>a letter spacing game</p>
+     <div id="donations">
+      <a href="https://method.ac/donate/">donate</a>
+    </div>
   </header>
   <div id="container">
-    <div id="remaining"><div id="slides">10</div>remaining</div>
-    <article>
-        <div id="actions">
-          <div id="results">
-            <div class="score">
-              <div class="similarity">Similarity</div>
-              <div id="number">99</div><div id="percent">%</div>
-            </div>
-          
-            <div id="select">
-              <div class="option"><a href="#" class="selected" id="showboth">Both letters</a></div>
-              <div class="option"><a href="#" id="showexpert">Original letter</a></div>
-              <div class="option"><a href="#" id="showyour">Your letter</a></div>
-            </div>
-              <a id="next">Next</a>
+    <canvas id="canvas" resize></canvas>
+    </div>
+    <div id="message" class="message hidden">
+      <div class="message-icon">
+         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/></svg>
+      </div>
+      <div>Letter can't be moved</div>
+    </div>
+    
+    <div class="stage-footer">
+        <div class="col left">
+          <div id="tabular" class="tabular">
+            <table>
+              <tr>
+                <th>Typeface</th>
+                <td><a href="#" target="_blank" id="typeface"></a>
+              </td>
+            </tr>
+            <tr><th>Created</th><td><span id="year"></span> by <a href="#" target="_blank" id="creator"></a></td></tr>
+            </table>
           </div>
-
+          <div class="comparing">
+            <div class="radio" id="radio">
+            </div>
+          </div>
         </div>
-        <div id="canvas"></div>
-        <div id="instructions">Drag to get started</div>
-        <div class="string" data-destroy="8,2">
-          <h1>s</h1>
+        <div class="col center">
+          <div class="comparing" id="scoreWidget">
+            <div class="score">
+              <span class="title">Your score</span>
+              <span id="score">0</span>
+              <span class="total">100</span>
+              <div><a href="#">Try Again</a></div>
+            </div>
+            
+          </div>
         </div>
-        <div class="string" data-destroy="15,2|24,1" data-pull="180">
-          <h1>q</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/itc-lubalin-graph/" target="_blank">Lubalin Graph</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Herb_Lubalin" target="_blank">Herb Lubalin</a></td></tr>
-               <tr><th>Released</th><td>1974</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
+        <div class="col right buttons">
+          <a class="button" id="compare" href="#">Done</a>
+          <a class="button" id="next" href="#">Next</a>
         </div>
-        <div class="string" data-destroy="10,1,2|12,1,2" data-pull="100">
-          <h1>b</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/trajan/" target="_blank">Trajan</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Carol_Twombly" target="_blank">Carol Twombly</a></td></tr>
-               <tr><th>Released</th><td>1989</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
+        
+      </div>
+    </div>
+  <div class="drawer">
+    <div class="wrapper container">
+      <div class="tab" id="tab"><span>K</span>eyboard Shortcuts</div>
+        <div class="shortcuts">
+        <div class="col">          
+          <div>
+            <span class="command">
+              <span class="key">TAB</span>
+            </span> 
+            <span class="text"> Select next letter</span>
+          </div>
+          
+          <div>
+            <span class="command">
+              <span class="key">SHIFT</span>
+              <span class="plus">+</span> 
+              <span class="key">TAB</span> 
+            </span>
+            <span class="text"> Select previous letter</span>
+          </div>
+          
+          <div>
+            <span class="command">
+              <span class="key">ENTER</span> 
+            </span>
+            <span class="text"> Next screen</span>
+          </div>
         </div>
-        <div class="string" data-destroy="23,2|5,2|18,2|34,1"  data-pull="120">
-          <h1>e</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/itc-edwardian-script/" target="_blank">ITC Edwardian Script</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Ed_Benguiat" target="_blank">Ed Benguiat</a></td></tr>
-               <tr><th>Released</th><td>1994</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
+        <div class="col">
+          <div>
+            <span class="command">
+              <span class="key">&larr;</span>
+            </span> 
+            <span class="text"> Nudge left 1px</span>
+          </div>
+          
+          <div>
+            <span class="command">
+              <span class="key">SHIFT</span> 
+              <span class="plus">+</span> 
+              <span class="key">&larr;</span>
+            </span>
+            <span class="text"> Nudge left 10px</span>
+          </div>
         </div>
-        <div class="string" data-destroy="2,1|8,2|10,1" data-pull="50">
-          <h1>a</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://www.fontshop.com/fontlist/super_families/ff_dax/" target="_blank">FF Dax</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Hans_Reichel" target="_blank">Hans Reichel</a></td></tr>
-               <tr><th>Released</th><td>1997</td></tr>
-             </table>
-            <a class="compare">Compare</a>
-           </div>
+        <div class="col">          
+          <div>
+            <span class="command">
+              <span class="key">&rarr;</span>
+            </span> 
+            <span class="text"> Nudge right 1px</span>
+          </div>
+          
+          <div>
+            <span class="command">
+              <span class="key">SHIFT</span>
+              <span class="plus">+</span> 
+              <span class="key">&rarr;</span> 
+            </span>
+            <span class="text"> Nudge right 10px</span>
+          </div>
         </div>
-        <div class="string" data-destroy="5,1,2|12,1,2" data-pull="100">
-          <h1>s2</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/fontbureau/interstate/" target="_blank">Interstate</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Tobias_Frere-Jones" target="_blank">Tobias Frere-Jones</a></td></tr>
-               <tr><th>Released</th><td>1996</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
-        </div>
-        <div class="string" data-destroy="10,1,2|8,1,2|12,1,2" data-pull="100">
-          <h1>and2</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://new.myfonts.com/fonts/linotype/itc-lubalin-graph/" target="_blank">Lubalin Graph</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://en.wikipedia.org/wiki/Herb_Lubalin" target="_blank">Herb Lubalin</a></td></tr>
-               <tr><th>Released</th><td>1974</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
-        </div>
-        <div class="string" data-destroy="8,2|1,2" data-pull="130">
-          <h1>gminus</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://www.fontshop.com/fonts/downloads/fontfont/ff_zine_complete_suite/" target="_blank">FF Zine Slab Italic</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://www.fontshop.com/fonts/designer/ole_schafer/" target="_blank">Ole Schäfer</a></td></tr>
-               <tr><th>Released</th><td>1997</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
-        </div>
-        <div class="string" data-destroy="2,1,2|7,1,2|15,1,2|12,1,2" data-pull="80">
-          <h1>e3</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://www.linotype.com/54897/LinotypeSyntax-family.html" target="_blank">Syntax</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://de.wikipedia.org/wiki/Hans_Eduard_Meier" target="_blank">Hans Eduard Meier</a></td></tr>
-               <tr><th>Released</th><td>1969</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
-        </div>
-        <div class="string" data-destroy="32,1,2|4,1,2|16,1,2|10,1,2" data-pull="100">
-          <h1>g</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://www.fontshop.com/fonts/downloads/fontfont/ff_zine_complete_suite/" target="_blank">FF Zine Slab Italic</a></td></tr>
-               <tr><th>Designer</th><td><a href="http://www.fontshop.com/fonts/designer/ole_schafer/" target="_blank">Ole Schäfer</a></td></tr>
-               <tr><th>Released</th><td>1997</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
-        </div>
-        <div class="string" data-destroy="38,1,2|29,1,2|1,1,2|24,1,2" data-pull="100">
-          <h1>and</h1>
-          <div class="explain">
-             <table>
-               <tr><th>Typeface</th><td><a href="http://www.theleagueofmoveabletype.com/fonts/16-linden-hill" target="_blank">Linden Hill Italic</a> (open font)</td></tr>
-               <tr><th>Designer</th><td><a href="http://code.google.com/p/sortsmill/" target="_blank">Barry Schwartz</a></td></tr>
-               <tr><th>Released</th><td>2010</td></tr>
-             </table>
-             <a class="compare">Compare</a>
-           </div>
-        </div>
-
-    </article>
-  </div> 
-
-        </div id="social">
-
         </div>
         </div>
       </div>
+  <div id="popup">
+    <div class="background"></div>
+    <h1>Share your solution</h1>
+    <a href="#" id="close">Close</a>
+    <div id="popcontent">
+      <p>Write your name or nick</p>
+      <form action="#" id="getpermalink"><input type="text" id="yourname"><input type="submit" value="Done!"></form>
     </div>
-  </footer>
-  <div class="credits">
-    <div class="left">
-      <div class="keys">Hold <span>Shift</span> to snap to the axis, <span>Alt</span> for a quick preview</div>
+    <div id="poppermalink">
+      <p>Copy and paste this link wherever you want</p>
+      <div id="permalink"></div>
+      <a href="#" id="preview" target="_blank">Preview in a new window</a>
     </div>
   </div>
-
   <div id="overlay">
     <div id="finalscore">
-      <div class="title">Your score</div>
-      <div id="finaltotalscore">0</div>
-      <div class="outof">out of 100</div>
-      <a id="twitter" href="http://twitter.com/share?">Tweet your score</a>
-      <div class="tryagain"><a href="/?again">or try again</a></div>
-      <div class="plug">Shape Type is part of <a href="http://method.ac">Method of Action</a>, an online course to help programmers learn design.</div>
+      <div class="col">
+        <div class="title">Your score</div>
+        <div id="finaltotalscore">0</div>
+        <div class="outof">out of 100</div>
+      </div>  
+      <div class="col">
+        <a class="button" id="twitter" target="_blank" href="http://twitter.com/share?">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="40" height="40"><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>
+        Tweet your score
+        </a>
+        <div class="tryagain"><a href="#" id="tryagain">Play again</a></div>
+      </div>
+      <div class="plug">
+          ShapeType is brought to you by <a href="http://method.ac">Method of Action</a>.
+        </div>
     </div>
   </div>
-    <script type="text/javascript" charset="utf-8" src="js/letters.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/libs.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/shapes.js"></script>
+  <script type="text/javascript" src="js/paper-full.min.js"></script>
+  <script type="text/javascript" src="js/runge.js"></script>
+  <script type="text/javascript" src="js/anime.min.js"></script>
+  <script type="text/javascript" src="js/dao.js"></script>
+  <script type="text/javascript" src="js/state.js"></script>
+  <script type="text/javascript" src="js/dom.js"></script>
+  <script type="text/javascript" src="js/utils.js"></script>
+  <script type="text/javascript" src="js/path.js"></script>
+  <script type="text/javascript" src="js/stages.js"></script>
+  <script type="text/javascript" src="js/draggable.js"></script>
+  <script type="text/javascript" src="js/keyboard.js"></script>
+  <script type="text/javascript" src="js/table.js"></script>
+  <script type="text/javascript" src="js/drawer.js"></script>
+  <script type="text/javascript" src="js/letter.js"></script>
+  <script type="text/javascript" src="js/radio.js"></script>
+  <script type="text/javascript" src="js/tutorial.js"></script>
+  <script type="text/javascript" src="js/message.js"></script>
+  <script type="text/javascript" src="js/stage.js"></script>
+  <script type="text/javascript" src="js/game.js"></script>
+  <script type="text/javascript" src="js/start.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,74 @@
+
+#root {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%
+}
+
+#root {
+  stroke-width: 0;
+  fill: var(--z15);
+}
+
+#root .letters:hover {
+  fill: var(--z10);
+}
+
+.comparing #root {
+  pointer-events: none;
+}
+
+#root .selected path {
+  fill: var(--d6);
+}
+
+#root path {
+  transition: fill 150ms ease;
+}
+
+#root path.placeholder {
+  stroke-width: 1; 
+  stroke-opacity: 0.3;
+  fill-opacity: 0;
+  stroke-width: 1;
+  stroke: var(--z7);
+}
+
+#root .draggable {
+  cursor: ew-resize;
+}
+
+#root .draggable:hover {
+    fill: var(--z15);
+}
+
+#root .locked path {
+  cursor: not-allowed;
+}
+
+#root path.compare {
+  transition: transform 500ms ease-out;
+}
+
+#root .expert path {
+  visibility: hidden;
+}
+
+#root .expert path.compare {
+  visibility: visible;
+}
+
+#root line {
+  stroke: var(--z3);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+#root line.baseline {
+  stroke: var(--z4);
+}
