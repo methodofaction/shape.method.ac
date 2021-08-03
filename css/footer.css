@@ -1,11 +1,10 @@
-
 .stage-footer {
-
-}
-
-.stage-footer > .col {
+  display: flex;
+  flex-direction: row;
   position: absolute;
   bottom: 32px;
+  left: 32px;
+  right: 32px;
 }
 
 .stage-footer .col.left {

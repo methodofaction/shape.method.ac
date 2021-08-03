@@ -37,11 +37,6 @@ function State(){
     game.setTitle(stageTitle);
   }
 
-  function stageComparing(bool){
-    if (bool) stage.compare();
-    else stage.play();
-  }
-
   function stagePositions(arr){
     stage.compare(bool);
   }

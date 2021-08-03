@@ -21,7 +21,6 @@
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/drawer.css">
-  <link rel="stylesheet" href="css/radio.css">
   <link rel="stylesheet" href="css/table.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/score.css">
@@ -31,6 +30,7 @@
   <link rel="stylesheet" href="css/stage.css">
   <link rel="stylesheet" href="css/tutorial.css">
   <link rel="stylesheet" href="css/message.css">
+
 </head>
 
 <body>
@@ -56,10 +56,10 @@
       <span>P</span>
       <span>E</span>
     </h1>
-     <p>a letter spacing game</p>
-     <div id="donations">
-      <a href="https://method.ac/donate/">donate</a>
-    </div>
+      <p>a shaping game</p>
+      <!--<div id="donations">
+        <a href="https://method.ac/donate/">donate</a>
+      </div>-->
   </header>
   <div id="container">
     <canvas id="canvas" resize></canvas>
@@ -72,38 +72,20 @@
     </div>
     
     <div class="stage-footer">
-        <div class="col left">
-          <div id="tabular" class="tabular">
-            <table>
-              <tr>
-                <th>Typeface</th>
-                <td><a href="#" target="_blank" id="typeface"></a>
-              </td>
-            </tr>
-            <tr><th>Created</th><td><span id="year"></span> by <a href="#" target="_blank" id="creator"></a></td></tr>
-            </table>
-          </div>
-          <div class="comparing">
-            <div class="radio" id="radio">
-            </div>
-          </div>
+      <div class="col left" style="flex-grow: 1;">
+        <div id="tabular" class="tabular">
+          <table>
+            <tr>
+              <th>Typeface</th>
+              <td><a href="#" target="_blank" id="typeface"></a>
+            </td>
+          </tr>
+          <tr><th>Created</th><td><span id="year"></span> by <a href="#" target="_blank" id="creator"></a></td></tr>
+          </table>
         </div>
-        <div class="col center">
-          <div class="comparing" id="scoreWidget">
-            <div class="score">
-              <span class="title">Your score</span>
-              <span id="score">0</span>
-              <span class="total">100</span>
-              <div><a href="#">Try Again</a></div>
-            </div>
-            
-          </div>
-        </div>
-        <div class="col right buttons">
-          <a class="button" id="compare" href="#">Done</a>
-          <a class="button" id="next" href="#">Next</a>
-        </div>
-        
+      </div>  
+      <div class="col right buttons">
+        <a class="button" id="done" href="#">Next</a>        
       </div>
     </div>
   <div class="drawer">
@@ -218,7 +200,6 @@
   <script type="text/javascript" src="js/table.js"></script>
   <script type="text/javascript" src="js/drawer.js"></script>
   <script type="text/javascript" src="js/letter.js"></script>
-  <script type="text/javascript" src="js/radio.js"></script>
   <script type="text/javascript" src="js/tutorial.js"></script>
   <script type="text/javascript" src="js/message.js"></script>
   <script type="text/javascript" src="js/stage.js"></script>

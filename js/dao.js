@@ -27,14 +27,6 @@ const dao = [
   },
 
   {
-    name: "stageComparing",
-    label: "Stage Comparing",
-    type: "boolean",
-    default: false,
-    private: true,
-    save: true
-  },
-  {
     name: "darkmode",
     label: "Dark Mode",
     type: "boolean",

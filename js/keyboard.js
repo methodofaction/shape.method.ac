@@ -28,16 +28,8 @@ window.addEventListener("keydown", function(e){
 
   if (key === "Enter") {
     e.preventDefault();
-    const comparing = state.get("stageComparing");
-
-    if (comparing) {
-      if (shift) game.load()
-      else game.nextStage()
-    }
-    else {
-      if (shift) game.prevStage()
-      else state.set("stageComparing", true);
-    }
+    if (shift) game.prevStage()
+    else game.nextStage()
   }
 
 });

@@ -4,15 +4,10 @@ function Stage(selector){
   paper.setup(el);
   const drawlayer = new paper.Layer({locked: true});
   const uiLayer = new paper.Layer();
-  const compareButton = dom.gid("compare");
-  const nextButton = dom.gid("next");
+  const doneButton = dom.gid("done");
   var path = null;
-  const scoreWidget = dom.gid("scoreWidget");
-  const tryAgainButton = dom.qs("a", scoreWidget);
   let curve = null;
-  compareButton.addEventListener("click", function(){state.set("stageComparing", true)});
-  nextButton.addEventListener("click", game.nextStage);
-  tryAgainButton.addEventListener("click", tryAgain);
+  doneButton.addEventListener("click", game.nextStage);
 
   const dragStyles = {
     strokeWidth: 32,
@@ -34,7 +29,9 @@ function Stage(selector){
 
   let dragging = false;
 
-  uiLayer.onMouseDown = function(e) {
+  const tool = new paper.Tool();
+
+  tool.onMouseDown = function(e) {
     const hitTarget = uiLayer.hitTest(e.point);
     if (!hitTarget) return;
     dragging = hitTarget.item;
@@ -42,16 +39,18 @@ function Stage(selector){
     path.fullySelected = false;
   }
 
-  uiLayer.onMouseUp = function(e) {
+  tool.onMouseUp = function(e) {
     document.body.classList.remove("dragging");
     path.fullySelected = true;
+    dragging = false;
   }
 
-  uiLayer.onMouseDrag = function(e) {
+  tool.onMouseDrag = function(e) {
     if (!dragging) return;
     const firstScreen = state.get("stageIndex") === 0;
-    const x = firstScreen ? 0 : e.delta.x;
-    const y = e.delta.y;
+    var x = firstScreen ? 0 : e.delta.x;
+    var y = e.delta.y;
+
     const handle = dragging.data.handle;
     const line = dragging.data.line;
     line.lastSegment.point.x += x;
@@ -60,12 +59,21 @@ function Stage(selector){
     dragging.position.y += y;
     handle.x += x;
     handle.y += y;
-    if (firstScreen) {
-      console.log(curve["handle1"].y)
-    }
+  }
+
+  function insertStyles(id) {
+    const style = document.documentElement.style;
+    [...Array(16).keys()].forEach(number => {
+      const value = runge["--" + id + number]
+      style.setProperty('--z' + number, value);
+    });
   }
 
   function render(data) {
+    insertStyles(data.scheme);
+    const colors = runge.switch(data.scheme);
+    drawlayer.clear();
+    uiLayer.clear();
     drawlayer.activate()
     drawlayer.selectedColor = runge["--z8"]
     const bounds = new paper.Path.Rectangle(0,150,window.innerWidth,window.innerHeight-300);
@@ -77,7 +85,7 @@ function Stage(selector){
     path.fillColor = runge["--z12"];
     path.fullySelected = true;
     path.blendMode = "screen";
-    uiLayer.activate()
+    uiLayer.activate();
     data.destroy.forEach(node => {
       const curve = path.curves[node.index];
       const handle =  curve["handle" + node.handle];
@@ -87,13 +95,14 @@ function Stage(selector){
       // node
       const seg = curve["segment" + node.handle];
       const pt = seg.point;
-      const segSquare = new paper.Path.Rectangle(
-        seg.point.transform(new paper.Matrix(1, 0, 0, 1, 4, 4)), 
-        seg.point.transform(new paper.Matrix(1, 0, 0, 1, -4, -4))
-      )
-      segSquare.style = nodeStyles;
       const line = new paper.Path.Line(pt, pt);
       line.style = nodeStyles;
+      const segSquare = new paper.Path.Rectangle(
+        seg.point.transform(new paper.Matrix(1, 0, 0, 1, 3, 3)), 
+        seg.point.transform(new paper.Matrix(1, 0, 0, 1, -3, -3))
+      )
+      segSquare.style = nodeStyles;
+
       const circle = new paper.Path.Circle(pt, 8);
       circle.set(dragStyles);
       circle.strokeColor.alpha = 0.2;
@@ -118,18 +127,7 @@ function Stage(selector){
   function load(data) {
     el.classList.remove("comparing");
     render(data);
-    const rs = renderScene.bind(_self);
-    rs(data);
-    table.render(data);
-    radio.hide();
-    nextButton.classList.add("hidden");
-    compareButton.classList.remove("hidden");
-    scoreWidget.classList.add("hidden");
-  }
-
-  function renderScene(data){
-    if (!data.scene) return;
-    else data.scene(this);
+    table.render(data.metadata);
   }
 
   function getStage(){
@@ -142,69 +140,8 @@ function Stage(selector){
     el.classList.remove("comparing");
   }
 
-  function compare(){
-    const stage = getStage();
-    table.hide();
-    radio.show();
-    el.classList.add("comparing");
-    nextButton.classList.remove("hidden");
-    compareButton.classList.add("hidden");
-    scoreWidget.classList.remove("hidden");
-    score();
-    compareBoth();
-  }
-
-  function score(){
-    const stage = getStage();
-    
-    const score = 100;
-
-    anime({
-      targets: dom.gid("score"),
-      duration: 1000,
-      round: 1,
-      innerHTML: [0, score],
-      easing: "cubicBezier(0.000, .800, 0.485, .800)",
-    })
-  }
-
-  function compareBoth(){
-  }
-
-  function compareSolution(){
-    const stage = getStage();
-    
-  }
-
-  function compareYour(){
-    const stage = getStage();
-
-  }
-
-  function getPositions(){
-  }
-
-  function getPositionsPct(){
-    
-  }
-
-
-  function reposition(dx){
-
- 
-  }
-
-
   this.paper = paper;
   this.load = load;
-  this.getPositions = getPositions;
-  this.compare = compare;
   this.play = play;
-  this.compareSolution = compareSolution;
-  this.compareYour = compareYour;
-  this.compareBoth = compareBoth;
   this.selectedIndex = false;
-  this.reposition = reposition;
-  this.tryAgain = tryAgain;
-
 }

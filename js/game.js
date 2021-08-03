@@ -25,7 +25,6 @@ function Game(){
     const scores = state.get("stageScore").filter(score => score > 1);
     stage.load(stages[index]);
     this.currentStage = stages[index];
-    state.set("stageComparing", false);
     if (scores.length >= 10) return finish();
   }
 

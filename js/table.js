@@ -7,8 +7,15 @@ function Table(selector){
   function show(){
     el.style.display = "";
   }
+
   function render(data){
-    dom.empty(el);
+
+    // table exists? remove 
+    let t = dom.qs("table");
+    if (t) t.parentNode.removeChild(t);
+
+    if (!data) return hide();
+
     const table = dom.create({el: "table"});
 
     const t_tr = dom.create({el: "tr"}, table);
@@ -16,8 +23,8 @@ function Table(selector){
     const t_td = dom.create({el: "td"}, t_tr);
     const t_a = dom.create({el: "a", 
           target: "_blank", 
-          href: data.typefaceUrl,
-          html: data.typeface
+          href: data.TypefaceUrl,
+          html: data.Typeface
         }, t_td);
 
     const c_tr = dom.create({el: "tr"}, table);
@@ -25,14 +32,14 @@ function Table(selector){
     const c_td = dom.create({el: "td"}, c_tr);
     const c_a = dom.create({el: "a", 
           target: "_blank", 
-          href: data.creatorUrl,
-          html: data.creator
+          href: data.DesignerUrl,
+          html: data.Designer
         }, c_td);
     dom.create({el: "span", class: "mobile-only", html: ' in ' + data.year}, c_td)
 
     const y_tr = dom.create({el: "tr", class: "desk-only"}, table);
-    const y_th = dom.create({el: "th", html: "Year"}, y_tr);
-    const y_td = dom.create({el: "td", html: data.year}, y_tr);
+    const y_th = dom.create({el: "th", html: "Released"}, y_tr);
+    const y_td = dom.create({el: "td", html: data.Released}, y_tr);
 
 
     el.appendChild(table);
